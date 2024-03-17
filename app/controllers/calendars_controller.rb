@@ -8,7 +8,13 @@ class CalendarsController < ApplicationController
 
   # 予定の保存
   def create
-    binding.pry
+    calendar_params = params.require(:calendar).permit(:name, :date)
+    @calendar = Calendar.new(calendar_params)
+    if @calendar.save
+      redirect_to @calendar, notice: 'Calendar was successfully created.'
+    else
+      render :new
+    end
     Plan.create(plan_params)
     redirect_to action: :index
   end
