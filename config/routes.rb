@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root 'calendars#index'
+  root to:"calendars#index"
   resources :calendars
 end
